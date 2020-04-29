@@ -1,0 +1,167 @@
+<import path="./css/snack.css">
+<import path="./js/snack.js">
+<div id="school_alarm">
+<span><b>학교 공지사항</b>&nbsp; ▶<br></span>
+</div>
+<div id="content">
+	<div id="left_side"></div>
+	<div id="content_side">
+		<div id="title">간식 신청</div>
+		<!--탭 시작-->
+		<div id="tabmenu">
+			<div id="tab_a" class="tab_on" onclick="javascript:changeTab('tab_a')" >
+				<div id="request">
+					진행 중인 간식 신청
+				</div>
+			</div>
+
+			<div id="tab_b" class="tab_off" onclick="javascript:changeTab('tab_b')">
+				<div id="request_data">
+					나의 간식 신청 내역
+				</div>
+			</div>
+		</div>
+		<!--탭 종료-->
+		<div id="no_snack_data" class="view-off">
+			<span id="no">간식 신청 내역이 없습니다.</span>
+		</div>
+		<div id="tab_a_content" class="view-on">
+			<div id="month_requ">9월간식(1)</div>
+			
+			<div id="submit">
+				<input type="submit" value="간식 신청" class="submitbt">
+			</div>
+			<div class="text">
+				- 급식 신청 마감 기한: 2013년 8월 25일(일) <span id="alarm" class="text"> [마감 2일 전]
+				</span>
+			</div>
+			<div class="text">
+				- 급식 기간: 2013년 9월 2일(월) ~ 9월 30일(월) (단, 주말 제외)
+			</div>
+			
+			<div class="text">- 급식비: 단가 2,000원 × 총 21식 = 42,000원 <img src="./img/cal_icon.png" id="calendar_image" onmouseover="javascript:showCalendar('calendar')"
+				onmouseout="javascript:hideCalendar('calendar')"></div>
+				<!-- UI Object -->
+				<div id="calendar" class="view-off">                 
+
+				    <div class="calendar_period">
+
+				        <strong>{@ echo date("Y년 n월"); }</strong>
+
+				    </div>
+
+				    <table cellspacing="0" border="1">
+                    <tr>
+	                    <td class="weekday">일</td>
+	                    <td class="weekday">월</td>
+	                    <td class="weekday">화</td>
+	                    <td class="weekday">수</td>
+	                    <td class="weekday">목</td>
+	                    <td class="weekday">금</td>
+	                    <td class="weekday">토</td>
+                    </tr>
+					{@ $day=1; }
+					{@ for ($i=1; $i <= $total_week; $i++): }
+					<tr>
+					    {@ for ($j=0; $j<7; $j++): }
+							<condition do="($i == 1 && $j < $first_day) || ($i == $total_week && $j > $last_day)">
+								<td>
+							</condition>
+					        <condition do="!($i == 1 && $j < $first_day) || ($i == $total_week && $j > $last_day)">
+					        	<condition do="$day > 0 && $day < 15">
+							        <condition do="$j == 0">
+							        	<td class="sun">
+							        </condition>
+							        <condition do="$j == 6">
+							        	<td class="sat">
+							        </condition>
+							        <condition do="$j != 0 && $j != 6 && $day != date('j')">
+							        	<td class="selected">
+							        </condition>
+							    </condition>
+							    <condition do="$day > 14">
+							        <condition do="$j == 0 && $day == date('j')">
+							        	<td class="sun selected">
+							        </condition>
+							        <condition do="$j == 0 && $day != date('j')">
+							        	<td class="sun">
+							        </condition>
+							        <condition do="$j == 6 && $day == date('j')">
+							        	<td class="sat selected">
+							        </condition>
+							        <condition do="$j == 6 && $day != date('j')">
+							        	<td class="sat">
+							        </condition>
+							        <condition do="$j != 0 && $j != 6 && $day != date('j')">
+							        	<td>
+							        </condition>
+						        </condition>
+						        <a href="#">{@ echo $day;}</a>
+						        {@ $day++;}
+						    </condition>
+							</td>
+					        {@ endfor; }
+					        </tr>
+					{@ endfor; }     
+				    </table>
+				</div>
+			<div><hr id="line"class="hrline"></div>
+
+			<div><hr class="hrline"></div>
+				
+				<div id="use_info_a" class="view-on">
+					<div><strong>이용안내</strong></div>
+					<div class="info_right">	
+						<div class="text_2">- 신청/취소가 가능한 간식 신청만 표시됩니다.</div>
+						<div class="text_2">- 급식 메뉴 및 급식 여부는 급식실 사정 또는 학교 일정에 따라 달라질 수 있습니다.</div>
+						<div class="text_2">- 궁금하신 점은 <a href="">급식실 문의</a> 게시판을 이용하시거나 본관 지하 1층의 영양상담실을 방문하여 상담하시기 바랍니다.
+						</div>
+
+					</div>	
+				</div>
+
+			<div><hr class="hrline"></div>
+		</div>
+
+		<div id="tab_b_content" class="view-off">
+			<div id="month_requ">9월간식</div>
+			<div id="submit">
+				<input type="submit" value="간식 신청 취소" class="submitbt">
+			</div>
+			<div class="text">
+				- 급식 기간: 2013년 9월 2일(월) ~ 9월 30일(월) (단, 주말 제외)
+			</div>
+			<div class="text">
+				- 급식 신청 일시: 2013년 8월 24일(토) 13시 49분 10초
+			</div>
+			
+			<div class="text">- 급식비: 단가 2,000원 × 총 21식 = 42,000원</div>
+			<div><hr id ="line" class="hrline"></div>
+			<div><hr class="hrline"></div>
+				
+				<div id="use_info_b">
+					<div><strong>이용안내</strong></div>
+					<div class="info_right">
+						<div class="text_2">- '간식 신청 취소' 버튼은 취소가 가능한 간식 신청에만 표시됩니다.
+						</div>
+						<div class="text_2">
+						- 급식 메뉴 및 급식 여부는 급식실 사정 또는 학교 일정에 따라 달라질 수 있습니다.
+						</div>
+						<div class="text_2">
+						- 간식 신청 내역은 관계법령에 따라 5년간 보관됩니다.
+						</div>
+						<div class="text_2">- 궁금하신 점이 있거나 변동사항이 있다면 <a href="">급식실 문의</a> 게시판을 이용하시거나 본관 지하 1층의 영양상담실을 방문하여 상담하 <span id="margin">시기 바랍니다.</span></div>
+					</div>
+				</div>
+
+			<div><hr class="hrline" style="margin-top:15px"></div>
+		</div>
+	</div><!--content_side 종료 -->
+</div><!-- 내용 종료 -->
+
+
+<script>
+<!--
+
+-->
+</script>

@@ -1,0 +1,19 @@
+{
+	"name" 			: 		"snack module",
+	"author" 		: 		"이관형, 서유림",
+	"version" 		: 		"1.0.1(2013.08.10)",
+	"actions" 		: 		[
+		{
+			"name"			: 		"dispDefault",
+			"view" 			: 		"SnackView",
+			"model" 		: 		"SnackModel",
+			"controller" 	: 		"SnackController",
+			"default" 		: 		true
+		},
+		{
+			"name"			: 		"procData",
+			"model" 		: 		"SnackModel",
+			"controller" 	: 		"SnackController"
+		}
+	]
+}
